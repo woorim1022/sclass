@@ -14,7 +14,7 @@ class Class(models.Model):
         ('커피/차', '커피/차'),
     )
     class_title = models.CharField(max_length=255)
-    describe = models.CharField(max_length=255)
+    summary = models.CharField(max_length=255)
     describe = models.TextField()
     price = models.IntegerField()
     date = models.DateTimeField()
