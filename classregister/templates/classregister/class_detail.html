@@ -17,5 +17,7 @@
 {{object.max_number}}
 
 <a href="{% url 'home' %}">뒤로가기</a>
+<a href="{% url 'classregister:delete' object.id %}" onclick="return confirm('삭제하시겠습니까?')">삭제하기</a>
+
 
 {% endblock %}
