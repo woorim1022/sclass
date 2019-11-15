@@ -32,10 +32,33 @@
 {{object.max_number}}
 <br>
 
+{% if user.id in object.book_set.user %}
+<a href="{% url 'classregister:detail' object.id %}">리뷰쓰기</a>
+<br>
+<form method='POST'>
+    {% csrf_token %}
+    <table>
+        {{form.as_table}}
+    </table>
+    <br><br>
+    {% if form %}
+    <input type="submit" value="등록">
+    {% endif %}
+</form>
+{% endif %}
+
+<br>
+{% for review in reviews %}
+{{ review.user.username }}
+{{ review.content }}
+<br>
+{% endfor %}
+<br>
+
 {% if object.book_set.count == 1 %}
-<a href="{% url 'classregister:scrap' object.id %}">신청 취소</a>
+<a href="{% url 'classregister:participate' object.id %}">신청 취소</a>
 {% else %}
-<a href="{% url 'classregister:scrap' object.id %}">클래스신청</a>
+<a href="{% url 'classregister:participate' object.id %}">클래스신청</a>
 {% endif %}
 
 찜하기
