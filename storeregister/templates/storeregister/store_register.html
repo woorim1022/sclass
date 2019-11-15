@@ -1,7 +1,7 @@
 <p>가게등록페이지</p>
 {% extends 'base.html' %}
 {% block content %}
-    <form method='POST'>
+    <form method='POST' enctype="multipart/form-data" novalidate>
 
         {% csrf_token %}
         user : {{ form.user }}<br>
@@ -9,6 +9,7 @@
         region : {{ form.region }} <br>
         homepage : {{ form.homepage }} <br>
         dscribe : {{ form.describe }} <br>
+        photo : {{ form.photo }} <br>
         
         
         <!--다음 api-->

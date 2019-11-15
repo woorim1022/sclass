@@ -19,7 +19,7 @@ def detail(request, store_id):
 #@login_required
 def register(request):
     if request.method == 'POST':
-        form = StoreForm(request.POST)
+        form = StoreForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.save()

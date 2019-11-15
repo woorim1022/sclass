@@ -14,7 +14,7 @@ class Store(models.Model):
     address = models.TextField()
     detailaddr = models.TextField(max_length=200)
     homepage = models.URLField(max_length=200)
-    #photo = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+    photo = models.ImageField(null=True,blank=True, upload_to='store/')
     describe = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 
