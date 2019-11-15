@@ -1,5 +1,10 @@
 <p>클래스정보수정페이지</p>
 {% extends 'base.html' %}
 {% block content %}
-
+<form method='POST'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <br>
+    <input type="submit" value="수정">
+</form>
 {% endblock %}
