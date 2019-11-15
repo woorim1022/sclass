@@ -21,7 +21,7 @@ class Class(models.Model):
     price = models.IntegerField()
     date = models.DateTimeField()
     category = models.CharField(max_length=10, choices=CATEGORY) # 미정
-    current_number = models.IntegerField()
+    current_number = models.IntegerField(default=0)
     max_number = models.IntegerField()
     img1 = models.ImageField(null=True,blank=True)
     img2 = models.ImageField(null=True,blank=True)
