@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse
 
 from .models import Class
 
@@ -23,6 +24,14 @@ def register(request):
         form = ClassForm(request.POST)
         if form.is_valid():
             one_class = form.save(commit=False)
+
+            # user가 신청하는 곳에 갈 것
+            # try:
+            #     if one_class.current_number == one_class.max_number:
+            #         raise ValueError
+            # except ValueError:
+            #     return HttpResponse("인원이 가득찼습니다!")
+
             one_class.owner_name = request.user
             one_class.save()
             return redirect('home')
@@ -47,10 +56,19 @@ def classupdate(request, class_id):
 def delete(request, class_id):
     one_class = get_object_or_404(Class, pk = class_id)
     one_class.delete()
-    return redirect('home')
+    return redirect('list')
 
-def result(request):
-    return render(request, 'classregister/class_result.html', data)
+def search(request):
+    qs = Class.objects.all()
+    q = request.GET.get('q','')
+    if q:
+        qs = qs.filter(class_title__icontains=q)
+
+    data = { 
+        'classes' : qs,
+        'q' : q
+         }
+    return render(request, 'classregister/class_list.html', data)
 
 def scrap(request, class_id):
     return render(request, 'classregister/class_detail.html', data)
