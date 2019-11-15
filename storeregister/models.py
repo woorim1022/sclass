@@ -18,13 +18,6 @@ class Store(models.Model):
     describe = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 
-<<<<<<< HEAD
-=======
-    #가게추천
-    #recommend_user = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Recommend')
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
->>>>>>> origin/woorim
     def __str__(self):
       return self.store_title
 
