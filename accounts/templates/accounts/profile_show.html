@@ -1,4 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% if user.is_authenticated %}
+
+<p>아이디 : {{ user.username }}</p>
+<p>이름 : {{ user.first_name }}</p>
+<p>성 : {{ user.last_name }}</p>
+<p>이메일 : {{ user.email }}</p>
+<p>판매자인가요? : {{ user.seller }}</p>
+<p>전화번호 : {{ user.phone }}</p>
+
+<a href="{% url 'profile_edit' %}">수정하기</a>
+
+{% endif %}
+
 {% endblock %}

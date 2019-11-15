@@ -21,3 +21,8 @@ class User(AbstractUser):
             )
         ]
     )
+<<<<<<< HEAD
+=======
+
+    
+>>>>>>> origin/woorim
