@@ -1,0 +1,21 @@
+<p>클래스상세페이지</p>
+{% extends 'base.html' %}
+{% block content %}
+
+{{object.img1}}
+{{object.img2}}
+{{object.img3}}
+{{object.img4}}
+{{object.img5}}
+
+{{object.class_title}}
+{{object.describe}}
+{{object.price}}원
+{{object.date}}
+{{object.category}}
+{{object.current_nunmber}}
+{{object.max_number}}
+
+<a href="{% url 'home' %}">뒤로가기</a>
+
+{% endblock %}

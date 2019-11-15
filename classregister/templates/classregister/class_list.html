@@ -2,4 +2,16 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% for object in classes %}
+    {{object.img1}}
+    {{object.class_title}}
+    {{object.describe}}
+    {{object.price}}원
+    {{object.date}}
+    {{object.category}}
+    {{object.current_nunmber}}
+    {{object.max_number}}
+    <a href="{% url 'classregister:detail' object.id %}">자세히</a>
+{% endfor %}
+
 {% endblock %}
