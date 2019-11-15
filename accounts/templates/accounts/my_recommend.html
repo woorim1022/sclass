@@ -2,4 +2,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
+{% for recommend in recommends.all %}
+    <br>
+    <a href="{% url 'detail' recommend.store.id %}">{{recommend.store.store_title}} </a>
+    <br>
+{% endfor %}
+
+
+
 {% endblock %}

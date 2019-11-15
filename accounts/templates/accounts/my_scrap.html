@@ -2,4 +2,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<h1>내가 스크랩한 글</h1>
+
+{% for scrap in scraps.all %}
+    <br>
+    <a href="{% url 'detail' scrap.class.id %}">{{scrap.class.class_title}} </a>
+    <!--classregister 앱의 detail과 storeregister 앱의 detail 이름이 겹쳐서 수정 필요-->
+    <br>
+{% endfor %}
+
+
 {% endblock %}

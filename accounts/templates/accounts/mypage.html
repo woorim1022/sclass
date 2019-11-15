@@ -8,4 +8,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<a href="{% url 'profile_show' %}">내 프로필 보기</a>
+<a href="{% url 'my_scrap' %}">내가 스크랩한 클래스</a>
+<a href="{% url 'my_recommend'  %}">내가 추천한 가게</a>
+<a href="{% url 'my_review' %}">내가 리뷰한 클래스</a>
+<a href="{% url 'my_enroll' %}">내가 신청한 클래스</a>
+
+<!-- seller=true 인 경우 -->
+<a href="{% url 'my_store' %}">나의 가게</a>
+<a href="{% url 'my_class' %}">내가 개설한 클래스</a>
+<a href="{% url 'my_consult' %}">나의 컨설팅 목록</a>
+
+
+
 {% endblock %}

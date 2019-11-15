@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 class Store(models.Model):
@@ -15,4 +16,14 @@ class Store(models.Model):
     #photo = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     describe = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
+
+    #가게추천
+    #recommend_user = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Recommend')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+
+class Recommend(models.Model) :
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)      
 
