@@ -2,4 +2,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% for review in reviews.all %}
+    <br>
+    <a href="{% url 'detail' review.review_class.id %}">{{review.review_class.class_title}} </a>
+    <p>{{review.review_class.rate}} </p>
+    <p>{{review.review_class.content}} </p>
+    <!--classregister 앱의 detail과 storeregister 앱의 detail 이름이 겹쳐서 수정 필요-->
+    <br>
+{% endfor %}
+
+
 {% endblock %}
