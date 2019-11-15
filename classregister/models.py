@@ -14,12 +14,18 @@ class Class(models.Model):
         ('커피/차', '커피/차'),
     )
     class_title = models.CharField(max_length=255)
+    describe = models.CharField(max_length=255)
     describe = models.TextField()
     price = models.IntegerField()
     date = models.DateTimeField()
     category = models.CharField(max_length=10, choices=CATEGORY) # 미정
     current_number = models.IntegerField()
     max_number = models.IntegerField()
+    img1 = models.ImageField(blank=True)
+    img2 = models.ImageField(blank=True)
+    img3 = models.ImageField(blank=True)
+    img4 = models.ImageField(blank=True)
+    img5 = models.ImageField(blank=True)
 
 class Book(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
