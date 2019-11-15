@@ -1,13 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from .models import User
-from classregister.models import Scrap
+from classregister.models import Scrap, Review
 from storeregister.models import Recommend
 from .forms import UserForm
+from django.contrib import messages
 # Create your views here.
-
-def accountbase(request):
-    return render(request, 'accounts/accountbase.html')
 
 def signup(request):
     #signup 버튼을 눌렀을 때 일어나야 하는 일
@@ -63,7 +61,8 @@ def my_recommend(request):
     return render(request, 'accounts/my_recommend.html', {'recommends': recommends})
 
 def my_review(request):
-    return render(request, 'accounts/my_review.html')
+    reviews = Review.objects.filter(user=request.user)
+    return render(request, 'accounts/my_review.html', {'reviews': reviews})
     
 def my_scrap(request):
     scraps = Scrap.objects.filter(user=request.user)
@@ -80,6 +79,17 @@ def my_enroll(request):
     return render(request, 'accounts/my_enroll.html') 
 
 def profile_edit(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        if user_form.is_valid():
+            user_form.save()
+            messages.success(request, ('Your profile was successfully updated!'))
+            return redirect('profile_show')
+        else:
+            messages.error(request, ('Please correct the error below.'))
+    else:
+        user_form = UserForm(instance=request.user)
+        return render(request, 'accounts/profile_edit.html', {'user_form':user_form})
     return render(request, 'accounts/profile_edit.html') 
 
 def profile_show(request):

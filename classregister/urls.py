@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
+app_name = 'classregister'
+
 urlpatterns = [
     path('list/', views.class_list, name='list'),                                  #클래스리스트
     path('<int:class_id>/', views.detail, name='detail'),                          #클래스상세
