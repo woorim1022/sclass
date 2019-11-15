@@ -2,6 +2,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% if messages %}
+{% for msg in messages %}
+{{msg}}
+{% endfor %}
+{% endif %}
+<br>
+<br>
+
+
 {{object.img1}}
 {{object.img2}}
 {{object.img3}}
@@ -22,7 +31,13 @@
 <br>
 {{object.max_number}}
 <br>
-클래스신청
+
+{% if object.book_set.count == 1 %}
+<a href="{% url 'classregister:scrap' object.id %}">신청 취소</a>
+{% else %}
+<a href="{% url 'classregister:scrap' object.id %}">클래스신청</a>
+{% endif %}
+
 찜하기
 후기작성
 <a href="{% url 'classregister:list' %}">클래스 리스트로</a>
