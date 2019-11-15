@@ -30,4 +30,3 @@ urlpatterns = [
     path('classregister/', include('classregister.urls')),
     path('storeregister/', include('storeregister.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

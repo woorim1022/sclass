@@ -2,13 +2,12 @@
 {% extends 'base.html' %}
 {% block content %}
     <form method='POST'>
-            {% csrf_token %}
-
-            store title : {{ form.store_title }} <br>
-            region : {{ form.region }} <br>
-            homepage : {{ form.homepage }} <br>
-            dscribe : {{ form.describe }} <br>
-            photo : {{ form.photo }} <br>
+        {% csrf_token %}
+        {{ form.store_title.label }} {{ form.store_title }} <br>
+        {{ form.region.label }} {{ form.region }}<br>
+        {{ form.homepage.label }} {{ form.homepage }}<br>
+        {{ form.describe.label }} {{ form.describe }}<br>
+        {{ form.photo.label }} {{ form.photo }}<br>
             
             
             <!--다음 api-->
