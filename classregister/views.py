@@ -77,4 +77,5 @@ def recommend(request, class_id):
     return render(request, 'classregister/class_detail.html', data)
 
 def review(request, class_id):
-    return render(request, 'classregister/class_detail.html', data)
+    return render(request, 'classregister/class_detail.html')
+

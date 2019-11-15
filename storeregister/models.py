@@ -24,4 +24,5 @@ class Store(models.Model):
 class Recommend(models.Model) :
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     store = models.ForeignKey(Store, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)    
+    created_at = models.DateTimeField(auto_now_add=True)      
+

@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.conf import settings
 from storeregister.models import Store
@@ -29,9 +30,14 @@ class Class(models.Model):
     img4 = models.ImageField(null=True,blank=True)
     img5 = models.ImageField(null=True,blank=True)
 
+    #스크랩
+    #users = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Scrap')
+  
+
     def __str__(self):
         return self.class_title
 
+     
 class Scrap(models.Model) :
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     my_class = models.ForeignKey(Class, on_delete=models.CASCADE)
