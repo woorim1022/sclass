@@ -8,5 +8,5 @@ urlpatterns = [
     path('register/', views.register, name='register'),                         #가게등록 
     path('storeupdate/<int:store_id>', views.storeupdate, name='storeupate'),   #가게수정
     path('delete/<int:store_id>', views.delete, name='delete'),                 #가게삭제
-    path('scrap/<int:class_id>', views.scrap, name='scrap'),                    #스크랩
+    path('result/', views.result, name="result"),
 ]

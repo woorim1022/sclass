@@ -10,6 +10,8 @@ from django.conf import settings
 class User(AbstractUser):
    seller = models.BooleanField(default=False)
    phone = models.CharField(
+        null=True,
+        blank=True,
         max_length=13,
         unique=True,
         validators=[
@@ -19,13 +21,3 @@ class User(AbstractUser):
             )
         ]
     )
-
-class Scrap(models.Model) :
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    my_class = models.ForeignKey(Class, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-class Recommend(models.Model) :
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    store = models.ForeignKey(Store, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
