@@ -65,10 +65,12 @@
             });    
             </script>
 
-            <br>
-            <a href="{% url 'storeupate' store.id %}">수정하기</a><br>
-            <a href="{% url 'delete' store.id %}">삭제하기</a>
-            <br><br>
+            {% if request.user == store.user %}
+                <br>
+                <a href="{% url 'storeupate' store.id %}">수정하기</a><br>
+                <a href="{% url 'delete' store.id %}">삭제하기</a>
+                <br><br>
+            {% endif %}
 
         </body>
     </html>
