@@ -2,4 +2,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% for store in stores.all %}
+
+<a href="{% url 'detail' store.id %}">{{ store.store_title }}</a>
+
+{% endfor %}
+
+
 {% endblock %}

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 from .models import User
 from classregister.models import Class, Scrap, Review, Book
-from storeregister.models import Recommend
+from storeregister.models import Store, Recommend
 from .forms import UserForm
 from django.contrib import messages
 # Create your views here.
@@ -48,7 +48,8 @@ def logout(request):
     return render(request, 'accounts/signup.html')
 
 def mypage(request):
-    return render(request, 'accounts/mypage.html')
+    user = User.objects.filter(username=request.user)
+    return render(request, 'accounts/mypage.html', {'user':user})
 
 def my_class(request):
     classes = Class.objects.filter(owner_name=request.user)
@@ -71,7 +72,8 @@ def my_scrap(request):
     #return render(request, 'accounts/my_scrap.html')
 
 def my_store(request):
-    return render(request, 'accounts/my_store.html') 
+    stores = Store.objects.filter(user = request.user)
+    return render(request, 'accounts/my_store.html', {'stores':stores}) 
 
 def my_student(request, class_id):
     myclass = get_object_or_404(Class, pk = class_id)
