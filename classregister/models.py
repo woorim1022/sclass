@@ -7,7 +7,7 @@ from storeregister.models import Store
 class Class(models.Model):
 
     CATEGORY = (
-		('요리', '요리'),
+      ('요리', '요리'),
         ('수공예', '수공예'),
         ('꽃', '꽃'),
         ('미술', '미술'),

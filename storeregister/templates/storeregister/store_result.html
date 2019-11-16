@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+
+    <p>검색 결과</p>
+
+
+    {% for result in result.all %}
+    <a href="{% url 'detail' result.id %}">{{ result.store_title }}</a>
+    {{ result.region }}
+    <br>
+
+    {% endfor %}
+
+{% endblock %}
