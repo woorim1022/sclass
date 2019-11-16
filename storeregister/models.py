@@ -18,10 +18,6 @@ class Store(models.Model):
     describe = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 
-    #가게추천
-    #recommend_user = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Recommend')
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
     def __str__(self):
       return self.store_title
 
