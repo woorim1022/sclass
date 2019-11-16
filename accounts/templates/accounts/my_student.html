@@ -2,4 +2,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<p>현재 수강 신청 인원 : {{class.current_number}}</p>  <!--출력값이상-->
+<p>정원 : {{class.max_number}}</p>
+
+
+{% for book in books %}
+    <br>
+    <p>아이디 : {{book.user.username}}</p>
+    <p>신청 시간 : {{book.created_at}}</p>
+    <br>
+{% endfor %}
+
 {% endblock %}

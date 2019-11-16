@@ -2,16 +2,35 @@
 {% extends 'base.html' %}
 {% block content %}
 
+클래스 찾기
+<br>
+<form action="{% url 'classregister:search' %}" method="get">
+  <input type="text" name="q" value="{{ q }}">
+  <input type="submit" value="검색">
+</form>
+
 {% for object in classes %}
-    {{object.img1}}
+    {% if object.img1 %}
+        {{object.img1}}
+    {% endif %}
+    <br>
     {{object.class_title}}
-    {{object.describe}}
+    <br>
+    {{object.summary}}
+    <br>
     {{object.price}}원
+    <br>
     {{object.date}}
+    <br>
     {{object.category}}
-    {{object.current_nunmber}}
+    <br>
+    {{object.book_set.count}}
+    <br>
     {{object.max_number}}
+    <br>
     <a href="{% url 'classregister:detail' object.id %}">자세히</a>
+    <br>
+    <br>
 {% endfor %}
 
 {% endblock %}

@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 from .models import User
-from classregister.models import Scrap, Review
+from classregister.models import Class, Scrap, Review, Book
 from storeregister.models import Recommend
 from .forms import UserForm
 from django.contrib import messages
@@ -51,7 +51,8 @@ def mypage(request):
     return render(request, 'accounts/mypage.html')
 
 def my_class(request):
-    return render(request, 'accounts/my_class.html')
+    classes = Class.objects.filter(owner_name=request.user)
+    return render(request, 'accounts/my_class.html', {'classes' : classes})
 
 def my_consult(request):
     return render(request, 'accounts/my_consult.html')
@@ -65,15 +66,17 @@ def my_review(request):
     return render(request, 'accounts/my_review.html', {'reviews': reviews})
     
 def my_scrap(request):
-    scraps = Scrap.objects.filter(user=request.user)
-    return render(request, 'accounts/my_scrap.html', {'scraps': scraps})
+    books = Book.objects.filter(user=request.user)
+    return render(request, 'accounts/my_scrap.html', {'books': books})
     #return render(request, 'accounts/my_scrap.html')
 
 def my_store(request):
     return render(request, 'accounts/my_store.html') 
 
-def my_student(request):
-    return render(request, 'accounts/my_student.html') 
+def my_student(request, class_id):
+    myclass = get_object_or_404(Class, pk = class_id)
+    books = Book.objects.filter(book_class=myclass)
+    return render(request, 'accounts/my_student.html', {'class':myclass, 'books':books}) 
 
 def my_enroll(request):
     return render(request, 'accounts/my_enroll.html') 
