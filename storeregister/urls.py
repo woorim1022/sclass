@@ -2,6 +2,9 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
+app_name = 'storeregister'
+
+
 urlpatterns = [
     path('list/', views.store_list, name='list'),                   #가게리스트
     path('<int:store_id>', views.detail, name='detail'),                        #가게상세
