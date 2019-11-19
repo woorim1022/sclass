@@ -48,7 +48,7 @@ def logout(request):
     return render(request, 'accounts/signup.html')
 
 def mypage(request):
-    user = User.objects.filter(username=request.user)
+    user = User.objects.get(username=request.user)
     return render(request, 'accounts/mypage.html', {'user':user})
 
 def my_class(request):
@@ -100,3 +100,5 @@ def profile_edit(request):
 def profile_show(request):
     return render(request, 'accounts/profile_show.html') 
 
+###데코레이션
+#로그인, 사인업 안돼있으면 
