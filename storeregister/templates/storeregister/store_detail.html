@@ -67,12 +67,12 @@
 
             {% if request.user == store.user %}
                 <br>
-                <a href="{% url 'storeupate' store.id %}">수정하기</a><br>
-                <a href="{% url 'delete' store.id %}">삭제하기</a>
+                <a href="{% url 'storeregister:storeupate' store.id %}">수정하기</a><br>
+                <a href="{% url 'storeregister:delete' store.id %}">삭제하기</a>
                 <br><br>
             {% endif %}
 
-            <a href="{% url 'list' %}">글 목록</a>
+            <a href="{% url 'storeregister:list' %}">글 목록</a>
 
 
         </body>
