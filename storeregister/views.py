@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import Store
+from .models import Store, Recommend
 from .forms import StoreForm
 from accounts.models import User
 
@@ -72,3 +72,4 @@ def result(request) :
     if query:
         store_object = store_object.filter(region=query)
         return render(request,'storeregister/store_result.html',{'result':store_object} )
+

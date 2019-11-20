@@ -8,7 +8,8 @@ class Store(models.Model):
       ('SC', '서초구'),
       ('YS', '용산구'),
     )
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     store_title = models.CharField(max_length=100)
     region = models.CharField(max_length=200, choices=REGION_CHOICES)
     address = models.TextField()
