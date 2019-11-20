@@ -2,7 +2,7 @@
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 <a href="{% url 'home' %}">HOME</a>
-
+<br>
 
 {% if user.is_authenticated %}
 <p>환영합니다 {{ user.username }} 님!</p>

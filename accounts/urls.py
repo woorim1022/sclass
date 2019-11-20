@@ -16,6 +16,6 @@ urlpatterns = [
     path('my_consult/', views.my_consult, name='my_consult'),
     path('my_store/', views.my_store, name='my_store'),
     path('my_class/', views.my_class, name='my_class'),
-    path('my_student/', views.my_student, name='my_student'),
+    path('my_student/<int:class_id>', views.my_student, name='my_student'),
     path('my_enroll/', views.my_enroll, name='my_enroll'),
 ]

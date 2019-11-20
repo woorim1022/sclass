@@ -14,5 +14,5 @@ urlpatterns = [
     path('scrap/<int:class_id>/', views.scrap, name='scrap'),  
     path('participate/<int:class_id>/', views.participate, name='participate'),                     #스크랩
     path('recommend/<int:class_id>/', views.recommend, name='recommend'),          #추천
-    path('review/<int:class_id>/', views.review, name='review'),                   #리뷰
+    path('review/<int:review_id>/', views.delete_review, name='deletereview'),                   #리뷰
 ]
