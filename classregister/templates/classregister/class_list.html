@@ -11,8 +11,15 @@
 
 {% for object in classes %}
     {% if object.img1 %}
-        {{object.img1}}
+        <img src ="{{ object.img1.url }}" width = 200px> 
     {% endif %}
+    {% if object.img2 %}
+        <img src ="{{ object.img2.url }}" width = 200px> 
+    {% endif %}
+    {% if object.img3 %}
+        <img src ="{{ object.img3.url }}" width = 200px> 
+    {% endif %}
+    
     <br>
     {{object.class_title}}
     <br>
@@ -20,7 +27,7 @@
     <br>
     {{object.price}}원
     <br>
-    {{object.date}}
+    {{object.date|date:"Y년 m월 d일 H시 i분" }}
     <br>
     {{object.category}}
     <br>
