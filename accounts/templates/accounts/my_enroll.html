@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
+<h2>내가 수강신청한 클래스</h2>
 
-
-
+{% for book in books.all %}
+    <br>
+    <a href="{% url 'classregister:detail' book.book_class.id %}">{{book.book_class.class_title}} </a>
+    <br>
+{% endfor %}
 
 
 {% endblock %}

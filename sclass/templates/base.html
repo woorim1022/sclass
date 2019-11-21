@@ -3,6 +3,7 @@
 {% bootstrap_javascript jquery='full' %}
 <a href="{% url 'home' %}">HOME</a>
 <br>
+<a href="{% url 'mypage' %}">마이 페이지</a>
 
 {% if user.is_authenticated %}
 <p>환영합니다 {{ user.username }} 님!</p>
