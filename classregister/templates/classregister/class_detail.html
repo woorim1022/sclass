@@ -65,7 +65,6 @@
 <br>
 {% if user == review.user %}
 <a href="{% url 'classregister:deletereview' review.id %}" onclick="return confirm('삭제하시겠습니까?')">리뷰삭제</a>
-<a href="{% url 'classregister:deletereview' review.id %}">리뷰삭제</a>
 {% endif %}
 {% endfor %}
 <br>
