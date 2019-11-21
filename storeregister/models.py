@@ -8,20 +8,15 @@ class Store(models.Model):
       ('SC', '서초구'),
       ('YS', '용산구'),
     )
-
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     store_title = models.CharField(max_length=100)
-    region = models.CharField(max_length=200, choices=REGION_CHOICES)
-    address = models.TextField()
+    region = models.CharField(max_length=100, choices=REGION_CHOICES)
+    address = models.TextField(max_length=200)
     detailaddr = models.TextField(max_length=200)
     homepage = models.URLField(max_length=200)
     photo = models.ImageField(null=True,blank=True, upload_to='store/')
     describe = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-
-    #가게추천
-    #recommend_user = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Recommend')
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
       return self.store_title
