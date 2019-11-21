@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from storeregister.models import Store
 
 # Create your models here.
 class Class(models.Model):
@@ -13,19 +14,28 @@ class Class(models.Model):
         ('운동', '운동'),
         ('커피/차', '커피/차'),
     )
+    owner_name = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     class_title = models.CharField(max_length=255)
-    describe = models.CharField(max_length=255)
+    summary = models.CharField(max_length=255)
     describe = models.TextField()
     price = models.IntegerField()
     date = models.DateTimeField()
     category = models.CharField(max_length=10, choices=CATEGORY) # 미정
-    current_number = models.IntegerField()
+    current_number = models.IntegerField(default=0)
     max_number = models.IntegerField()
-    img1 = models.ImageField(blank=True)
-    img2 = models.ImageField(blank=True)
-    img3 = models.ImageField(blank=True)
-    img4 = models.ImageField(blank=True)
-    img5 = models.ImageField(blank=True)
+    img1 = models.ImageField(null=True,blank=True)
+    img2 = models.ImageField(null=True,blank=True)
+    img3 = models.ImageField(null=True,blank=True)
+    img4 = models.ImageField(null=True,blank=True)
+    img5 = models.ImageField(null=True,blank=True)
+
+    def __str__(self):
+        return self.class_title
+
+class Scrap(models.Model) :
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    my_class = models.ForeignKey(Class, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 class Book(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
