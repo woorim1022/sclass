@@ -1,11 +1,25 @@
-<h1>마이페이지</h1>
-<p>나의 클래스</p>
-<p>나의 가게</p>
-<p>나의 컨설팅</p>
-<p>나의 스크랩</p>
-<p>나의 추천</p>
-<p>나의 리뷰</p>
+
 {% extends 'base.html' %}
 {% block content %}
+<br><br>
+<a href="{% url 'profile_show' %}">내 프로필 보기</a>
+<br>
+<a href="{% url 'my_scrap' %}">내가 스크랩한 클래스</a>
+<br>
+<a href="{% url 'my_recommend'  %}">내가 추천한 가게</a>
+<br>
+<a href="{% url 'my_review' %}">내가 리뷰한 클래스</a>
+<br>
+<a href="{% url 'my_enroll' %}">내가 신청한 클래스</a>
+
+<!-- seller=true 인 경우 -->
+<br>
+<a href="{% url 'my_store' %}">나의 가게</a>
+<br>
+<a href="{% url 'my_class' %}">내가 개설한 클래스</a>
+<br>
+<a href="{% url 'my_consult' %}">나의 컨설팅 목록</a>
+<br>
+
 
 {% endblock %}

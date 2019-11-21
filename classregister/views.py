@@ -112,9 +112,14 @@ def scrap(request, class_id):
 def recommend(request, class_id):
     return render(request, 'classregister/class_detail.html', data)
 
+<<<<<<< HEAD
 def delete_review(request, review_id):
     review = get_object_or_404(Review, pk=review_id)
     if request.user != review.user:
         return HttpResponse('해당 리뷰를 쓴 유저가 아닙니다')
     review.delete()
     return redirect('classregister:detail', class_id=review.review_class.id)
+=======
+def review(request, class_id):
+    return render(request, 'classregister/class_detail.html', data)
+>>>>>>> 165680d736d1cad1512b7917e6d96cabdd270a88

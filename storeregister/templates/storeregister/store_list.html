@@ -1,5 +1,29 @@
-<p>가게리스트</p>
+
 {% extends 'base.html' %}
 {% block content %}
+
+    <p>가게리스트</p>
+
+    <!--필터링-->
+    <form action="{% url 'storeregister:result' %}" method="get">
+        <select name='query'>
+            <option value="{{None}}">지역</option>
+            <option value="GN">강남</option>
+            <option value="SC">서초</option>
+            <option value="YS">용산</option>
+        </select>
+        <input type="submit" name="" value="검색">
+    </form>
+    
+
+    <!--글목록-->
+    {% for store in stores.all %}
+        <a href="{% url 'storeregister:detail' store.id %}">{{ store.store_title }}</a>
+        {{ store.region }}
+        <br>
+    {% endfor %}
+
+    <br>
+    <a href="{% url 'storeregister:register' %}">스토어 등록하기</a>
 
 {% endblock %}
