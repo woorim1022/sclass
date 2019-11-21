@@ -10,12 +10,21 @@
 <br>
 <br>
 
-
-{{object.img1}}
-{{object.img2}}
-{{object.img3}}
-{{object.img4}}
-{{object.img5}}
+{% if object.img1 %}
+<img src ="{{ object.img1.url }}" width = 200px> 
+{% endif %}
+{% if object.img2 %}
+<img src ="{{ object.img2.url }}" width = 200px> 
+{% endif %}
+{% if object.img3 %}
+<img src ="{{ object.img3.url }}" width = 200px> 
+{% endif %}
+{% if object.img4 %}
+<img src ="{{ object.img4.url }}" width = 200px> 
+{% endif %}
+{% if object.img5 %}
+<img src ="{{ object.img5.url }}" width = 200px> 
+{% endif %}
 
 {{object.owner_name}}님의 클래스
 <br>
@@ -62,23 +71,22 @@
 <br>
 
 {% if user == object.owner_name %}
-<a href="{% url 'classregister:classupdate' object.id %}">수정</a>
-<a href="{% url 'classregister:delete' object.id %}" onclick="return confirm('삭제하시겠습니까?')">삭제하기</a>
-
+    <a href="{% url 'classregister:classupdate' object.id %}">수정</a>
+    <a href="{% url 'classregister:delete' object.id %}" onclick="return confirm('삭제하시겠습니까?')">삭제하기</a>
 
 {% else %}
 
-{% if object.book_set.count == 1 %}
-<a href="{% url 'classregister:participate' object.id %}">신청 취소</a>
-{% else %}
-<a href="{% url 'classregister:participate' object.id %}">클래스신청</a>
-{% endif %}
+    {% if object.book_set.count == 1 %}
+    <a href="{% url 'classregister:participate' object.id %}">신청 취소</a>
+    {% else %}
+    <a href="{% url 'classregister:participate' object.id %}">클래스신청</a>
+    {% endif %}
 
-{% if object.scrap_set.count == 1 %}
-<a href="{% url 'classregister:scrap' object.id %}">찜취소</a>
-{% else %}
-<a href="{% url 'classregister:scrap' object.id %}">찜하기</a>
-{% endif %}
+    {% if object.scrap_set.count == 1 %}
+    <a href="{% url 'classregister:scrap' object.id %}">찜취소</a>
+    {% else %}
+    <a href="{% url 'classregister:scrap' object.id %}">찜하기</a>
+    {% endif %}
 
 {% endif %}
 

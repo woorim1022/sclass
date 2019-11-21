@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 app_name = 'classregister'
@@ -15,4 +17,4 @@ urlpatterns = [
     path('participate/<int:class_id>/', views.participate, name='participate'),                     #스크랩
     path('recommend/<int:class_id>/', views.recommend, name='recommend'),          #추천
     path('review/<int:review_id>/', views.delete_review, name='deletereview'),                   #리뷰
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

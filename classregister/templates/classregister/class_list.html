@@ -10,9 +10,16 @@
 </form>
 
 {% for object in classes %}
-        {{object.img1}}
-        {{object.img2}}
-        {{object.img3}}
+    {% if object.img1 %}
+        <img src ="{{ object.img1.url }}" width = 200px> 
+    {% endif %}
+    {% if object.img2 %}
+        <img src ="{{ object.img2.url }}" width = 200px> 
+    {% endif %}
+    {% if object.img3 %}
+        <img src ="{{ object.img3.url }}" width = 200px> 
+    {% endif %}
+    
     <br>
     {{object.class_title}}
     <br>

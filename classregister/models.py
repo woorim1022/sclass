@@ -25,11 +25,11 @@ class Class(models.Model):
     category = models.CharField(max_length=10, choices=CATEGORY) # 미정
     current_number = models.IntegerField(default=0)
     max_number = models.IntegerField()
-    img1 = models.ImageField(null=True,blank=True)
-    img2 = models.ImageField(null=True,blank=True)
-    img3 = models.ImageField(null=True,blank=True)
-    img4 = models.ImageField(null=True,blank=True)
-    img5 = models.ImageField(null=True,blank=True)
+    img1 = models.ImageField(null=True,blank=True, upload_to='class/')
+    img2 = models.ImageField(null=True,blank=True, upload_to='class/')
+    img3 = models.ImageField(null=True,blank=True, upload_to='class/')
+    img4 = models.ImageField(null=True,blank=True, upload_to='class/')
+    img5 = models.ImageField(null=True,blank=True, upload_to='class/')
 
     #스크랩
     #users = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Scrap')
