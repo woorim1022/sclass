@@ -1,5 +1,12 @@
-<p>내가 개설한 클래스</p>s
 {% extends 'base.html' %}
 {% block content %}
+<p>내가 개설한 클래스</p>
+
+{% for class in classes.all %}
+
+<p>{{ class.class_title }}</p>
+<a href="{% url 'my_student' class.id %}">수강생 확인하기</a>
+
+{% endfor %}
 
 {% endblock %}
