@@ -17,6 +17,8 @@
 {{object.img4}}
 {{object.img5}}
 
+{{object.owner_name}}님의 클래스
+<br>
 {{object.class_title}}
 <br>
 {{object.describe}}
@@ -32,7 +34,7 @@
 {{object.max_number}}
 <br>
 
-{% if user.id in object.book_set.user %}
+{% if user in books %}
 <a href="{% url 'classregister:detail' object.id %}">리뷰쓰기</a>
 <br>
 <form method='POST'>
@@ -52,8 +54,19 @@
 {{ review.user.username }}
 {{ review.content }}
 <br>
+{% if user == review.user %}
+<a href="{% url 'classregister:deletereview' review.id %}" onclick="return confirm('삭제하시겠습니까?')">리뷰삭제</a>
+<a href="{% url 'classregister:deletereview' review.id %}">리뷰삭제</a>
+{% endif %}
 {% endfor %}
 <br>
+
+{% if user == object.owner_name %}
+<a href="{% url 'classregister:classupdate' object.id %}">수정</a>
+<a href="{% url 'classregister:delete' object.id %}" onclick="return confirm('삭제하시겠습니까?')">삭제하기</a>
+
+
+{% else %}
 
 {% if object.book_set.count == 1 %}
 <a href="{% url 'classregister:participate' object.id %}">신청 취소</a>
@@ -61,10 +74,15 @@
 <a href="{% url 'classregister:participate' object.id %}">클래스신청</a>
 {% endif %}
 
-찜하기
-후기작성
+{% if object.scrap_set.count == 1 %}
+<a href="{% url 'classregister:scrap' object.id %}">찜취소</a>
+{% else %}
+<a href="{% url 'classregister:scrap' object.id %}">찜하기</a>
+{% endif %}
+
+{% endif %}
+
 <a href="{% url 'classregister:list' %}">클래스 리스트로</a>
-<a href="{% url 'classregister:delete' object.id %}" onclick="return confirm('삭제하시겠습니까?')">삭제하기</a>
 <br>
 
 

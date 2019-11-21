@@ -21,8 +21,10 @@ def class_list(request):
 
 def detail(request, class_id):
     class_object = get_object_or_404(Class, pk=class_id)
+    books = Book.objects.filter(book_class=class_id)
+    books = [ i.user for i in books ]
     reviews = Review.objects.filter(review_class=class_id)
-    data = { 'object' : class_object, 'reviews' : reviews }
+    data = { 'object' : class_object, 'reviews' : reviews, 'books':books }
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -41,14 +43,6 @@ def register(request):
         form = ClassForm(request.POST)
         if form.is_valid():
             one_class = form.save(commit=False)
-
-            # user가 신청하는 곳에 갈 것
-            # try:
-            #     if one_class.current_number == one_class.max_number:
-            #         raise ValueError
-            # except ValueError:
-            #     return HttpResponse("인원이 가득찼습니다!")
-
             one_class.owner_name = request.user
             one_class.save()
             return redirect('home')
@@ -72,6 +66,8 @@ def classupdate(request, class_id):
 
 def delete(request, class_id):
     one_class = get_object_or_404(Class, pk = class_id)
+    if request.user != one_class.owner_name:
+        return HttpResponse('글쓴이만 삭제 가능 합니다.')
     one_class.delete()
     return redirect('list')
 
@@ -105,7 +101,7 @@ def participate(request, class_id):
 def scrap(request, class_id):
     user = get_object_or_404(get_user_model(), pk=request.user.id)
     one_class = get_object_or_404(Class, pk=class_id)
-    scraped = Scrap.objects.filter(user=user, book_class=one_class)
+    scraped = Scrap.objects.filter(user=user, my_class=one_class)
     if not scraped:
         scrap = Scrap.objects.create(user=request.user, my_class=one_class)
         return redirect('classregister:detail', class_id = class_id)
@@ -113,9 +109,12 @@ def scrap(request, class_id):
         scraped.delete()
         return redirect('classregister:detail', class_id = class_id)
 
-
 def recommend(request, class_id):
     return render(request, 'classregister/class_detail.html', data)
 
-def review(request, class_id):
-    return render(request, 'classregister/class_detail.html', data)
+def delete_review(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    if request.user != review.user:
+        return HttpResponse('해당 리뷰를 쓴 유저가 아닙니다')
+    review.delete()
+    return redirect('classregister:detail', class_id=review.review_class.id)
