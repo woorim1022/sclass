@@ -10,9 +10,9 @@
 </form>
 
 {% for object in classes %}
-    {% if object.img1 %}
         {{object.img1}}
-    {% endif %}
+        {{object.img2}}
+        {{object.img3}}
     <br>
     {{object.class_title}}
     <br>
@@ -20,7 +20,7 @@
     <br>
     {{object.price}}원
     <br>
-    {{object.date}}
+    {{object.date|date:"Y년 m월 d일 H시 i분" }}
     <br>
     {{object.category}}
     <br>
