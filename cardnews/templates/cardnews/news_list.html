@@ -1,0 +1,4 @@
+{% for news in news.all %}
+<a href="{% url 'news_content' news.id %}">{{ news.news_title }}</a>
+<br>
+{% endfor %}
