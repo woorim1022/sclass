@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+<h2>내가 스크랩한 클래스</h2>
 
-<h2>내가 수강신청한 클래스</h2>
-
-{% for book in books.all %}
+{% for scrap in scraps.all %}
     <br>
-    <a href="{% url 'classregister:detail' book.book_class.id %}">{{book.book_class.class_title}} </a>
+    <a href="{% url 'classregister:detail' scrap.my_class.id %}">{{scrap.my_class.class_title}} </a>
     <!--classregister 앱의 detail과 storeregister 앱의 detail 이름이 겹쳐서 수정 필요-->
     <br>
 {% endfor %}

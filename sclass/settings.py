@@ -29,7 +29,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'classregister.apps.ClassregisterConfig',
     'storeregister.apps.StoreregisterConfig',
-    'bootstrap4'
+    'bootstrap4',
+    'cardnews.apps.CardnewsConfig',
 ]
 
 MIDDLEWARE = [

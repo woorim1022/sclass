@@ -5,6 +5,8 @@ from classregister.models import Class, Scrap, Review, Book
 from storeregister.models import Store, Recommend
 from .forms import UserForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
 # Create your views here.
 
 def signup(request):
@@ -18,7 +20,7 @@ def signup(request):
                 user = User.objects.create_user(    #User객체 새로 생성 POST로 가져온 username과 password1 필드에 저장
                     request.POST['username'], password=request.POST['password1'])
                 auth.login(request, user)         #로그인 실행
-                return redirect('home')
+                return redirect('profile_edit')
         else:
             return render(request, 'accounts/signup.html', {'error': '비밀번호가 일치하지 않습니다'})
     else: 
@@ -40,17 +42,20 @@ def login(request):
 
 def signup_complete(request):
     return render(request, 'accounts/signup_complete.html') 
-    
+
+@login_required   
 def logout(request):
     if request.method == 'POST':
         auth.logout(request)
         return redirect('home')
     return render(request, 'accounts/signup.html')
 
+@login_required
 def mypage(request):
-    user = User.objects.get(username=request.user)
-    return render(request, 'accounts/mypage.html', {'user':user})
+        user = User.objects.get(username=request.user)
+        return render(request, 'accounts/mypage.html', {'user':user})
 
+@login_required
 def my_class(request):
     classes = Class.objects.filter(owner_name=request.user)
     return render(request, 'accounts/my_class.html', {'classes' : classes})
@@ -58,31 +63,40 @@ def my_class(request):
 def my_consult(request):
     return render(request, 'accounts/my_consult.html')
 
+@login_required
 def my_recommend(request):
     recommends = Recommend.objects.filter(user=request.user)
     return render(request, 'accounts/my_recommend.html', {'recommends': recommends})
 
+@login_required
 def my_review(request):
     reviews = Review.objects.filter(user=request.user)
     return render(request, 'accounts/my_review.html', {'reviews': reviews})
-    
-def my_scrap(request):
-    books = Book.objects.filter(user=request.user)
-    return render(request, 'accounts/my_scrap.html', {'books': books})
-    #return render(request, 'accounts/my_scrap.html')
 
+@login_required    
+def my_scrap(request):
+    scraps = Scrap.objects.filter(user=request.user)
+    return render(request, 'accounts/my_scrap.html', {'scraps':scraps})
+
+@login_required
 def my_store(request):
     stores = Store.objects.filter(user = request.user)
     return render(request, 'accounts/my_store.html', {'stores':stores}) 
 
+@login_required
 def my_student(request, class_id):
     myclass = get_object_or_404(Class, pk = class_id)
     books = Book.objects.filter(book_class=myclass)
-    return render(request, 'accounts/my_student.html', {'class':myclass, 'books':books}) 
+    current_number = myclass.book_set.count()
+    return render(request, 'accounts/my_student.html', {'class':myclass, 'books':books, 'current_number':current_number}) 
 
+@login_required
 def my_enroll(request):
-    return render(request, 'accounts/my_enroll.html') 
+    books = Book.objects.filter(user=request.user)
+    return render(request, 'accounts/my_enroll.html', {'books': books}) 
 
+@login_required
+@transaction.atomic
 def profile_edit(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
@@ -97,6 +111,7 @@ def profile_edit(request):
         return render(request, 'accounts/profile_edit.html', {'user_form':user_form})
     return render(request, 'accounts/profile_edit.html') 
 
+@login_required
 def profile_show(request):
     return render(request, 'accounts/profile_show.html') 
 
